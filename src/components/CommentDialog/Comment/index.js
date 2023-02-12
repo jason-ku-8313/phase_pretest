@@ -11,11 +11,11 @@ export default function Comment({ username, message, createAt }) {
                 flexDirection: 'row',
                 fontSize: 22
             }}>
-                <Avatar sx={{ 
-                    maxWidth: 24, 
-                    maxHeight: 24, 
+                <Avatar sx={{
+                    maxWidth: 24,
+                    maxHeight: 24,
                     mr: '5px',
-                    fontSize: 14 
+                    fontSize: 14
                 }}>
                     {username.charAt(0)}
                 </Avatar>

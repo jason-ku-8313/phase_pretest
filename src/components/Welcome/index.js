@@ -29,7 +29,7 @@ export default function Welcome() {
         setUser({ ...user, username });
         handleClose();
     }
-    
+
     const handleKeyDown = (e) => {
         if (e.keyCode === 13) {
             handleEnterUsername()
@@ -39,13 +39,14 @@ export default function Welcome() {
     return (
         <Dialog open={open} onClose={handleClose}>
             <DialogActions>
-                <TextField 
-                id="standard-basic" 
-                label="User Name" 
-                variant="standard" 
-                onChange={handleUpdateUsername}
-                onKeyDown={handleKeyDown} 
-            />
+                <TextField
+                    id="standard-basic"
+                    label="User Name"
+                    variant="standard"
+                    onChange={handleUpdateUsername}
+                    onKeyDown={handleKeyDown}
+                    autoFocus
+                />
                 <Button onClick={handleEnterUsername}>Enter</Button>
             </DialogActions>
         </Dialog>
