@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+# Comments
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-### `npm start`
+- [Demo Link](#demo-link)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Requirements](#requirements)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<a name="demo-link"></a>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Demo Link
 
-### `npm test`
+Navigate to [https://jasonku.netlify.app/](https://jasonku.netlify.app/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<a name="technologies"></a>
 
-### `npm run build`
+## Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[React](https://reactjs.org/), [PixiJS](https://pixijs.com/), [Material-UI](https://mui.com/) and [PubSub-js](https://github.com/mroderick/PubSubJS)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<a name="installation"></a>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Installation
 
-### `npm run eject`
+Clone down this repository. You will need `node` and `yarn` installed globally on your machine.  
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Installation:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`yarn install`  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To Run Test Suite:  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+`yarn test`  
 
-## Learn More
+To Start Server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+`yarn start`  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To Visit App:
 
-### Code Splitting
+`localhost:3000/` 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<a name="requirements"></a>
 
-### Analyzing the Bundle Size
+## Requirements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### A page with canvas (can use any graphics libraries like PIXI to implement)
 
-### Making a Progressive Web App
+- [x] Display a static image on the canvas
+- [ ] [Bonus] Canvas can zoom in/out and pan around
+- [x] [Bonus] Display more than one image
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Start a comment thread anywhere in the canvas
 
-### Advanced Configuration
+- [x] Clicking anywhere on the image displayed in the canvas should add a new
+      comment marker to the canvas and open the comment dialog
+- [x] Comment markers should exist in the canvas and retain the position relative to
+      the displayed image (independent of the pan and zoom)
+- [ ] [Bonus] If comments are placed on a particular image they should be attached to
+      that image, so that if the image to be moved or removed all comments placed on
+      it should move with it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Comment dialog:
 
-### Deployment
+- [x] Should be implemented outside of the canvas in React.
+- [ ] Should not change scale if the canvas is zoomed in or zoomed out.
+- [x] Should have a thread of comments and a field to add a new comment.
+- [x] Can be closed
+- [x] Should have a way to resolve the thread. If the thread is resolved, the
+      corresponding marker on the canvas should be deleted as well.
+- [ ] [Bonus] have ability for multiple users to leave comments in any thread (user
+      authentication is not required)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Comments:
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [x] Should display it’s content
+- [x] Display the time it was posted at
+- [x] Display the username who wrote the comment
