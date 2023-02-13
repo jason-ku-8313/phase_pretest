@@ -46,8 +46,10 @@ export default function CommentDialog() {
         setOpen(false)
         handleClearMessage();
         if (commentMarker.comments.length) {
-            PubSub.publish(CREATE_MARKER, commentMarker)
-            set({ ...commentMarker })
+            set({ ...commentMarker });
+            if (commentMarker.shouldCreateSprite) {
+              PubSub.publish(CREATE_MARKER, commentMarker);
+            }
         }
     };
 

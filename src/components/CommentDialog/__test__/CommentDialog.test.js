@@ -83,7 +83,7 @@ describe('<CommentDialog/>', () => {
             </UserContext.Provider>
         )
         act(() => {
-            PubSub.publishSync('OPEN_COMMENT_DIALOG', {
+            PubSub.publishSync(OPEN_COMMENT_DIALOG, {
                 comments: [{
                     createAt: "Sun, Feb 12, 24:00",
                     id: "1",
@@ -107,39 +107,30 @@ describe('<CommentDialog/>', () => {
 
     it(`should publish a ${REMOVE_MARKER} event when clicked Resolve button`, async () => {
         jest.spyOn(PubSub, 'publish');
+        const mockCommentMarker = {
+            coordinate: [0, 0],
+            name: "marker 1",
+            parent: "bulldog",
+            comments: [{
+                createAt: "Sun, Feb 12, 24:00",
+                id: "1",
+                message: "comment 1",
+                username: "user1"
+            }]
+        }
         render(
             <UserContext.Provider value={{ user: mockUser }}>
                 <CommentDialog />
             </UserContext.Provider>
         )
         act(() => {
-            PubSub.publishSync('OPEN_COMMENT_DIALOG', {
-                coordinate: [0, 0],
-                name: "marker 1",
-                parent: "bulldog",
-                comments: [{
-                    createAt: "Sun, Feb 12, 24:00",
-                    id: "1",
-                    message: "comment 1",
-                    username: "user1"
-                }]
-            });
+            PubSub.publishSync(OPEN_COMMENT_DIALOG, mockCommentMarker);
         })
 
         fireEvent.click(screen.getByText('Resolve'))
         expect(PubSub.publish).toHaveBeenCalledWith(
             REMOVE_MARKER,
-            {
-                coordinate: [0, 0],
-                name: "marker 1",
-                parent: "bulldog",
-                comments: [{
-                    createAt: "Sun, Feb 12, 24:00",
-                    id: "1",
-                    message: "comment 1",
-                    username: "user1"
-                }]
-            } 
+            mockCommentMarker,
         )
         await waitForElementToBeRemoved(() => screen.queryByRole('dialog'), { timeout: 200 });
     });
@@ -152,7 +143,7 @@ describe('<CommentDialog/>', () => {
             </UserContext.Provider>
         )
         act(() => {
-            PubSub.publishSync('OPEN_COMMENT_DIALOG', {
+            PubSub.publishSync(OPEN_COMMENT_DIALOG, {
                 coordinate: [0, 0],
                 name: "marker 1",
                 parent: "bulldog",
@@ -161,7 +152,8 @@ describe('<CommentDialog/>', () => {
                     id: "1",
                     message: "comment 1",
                     username: "user1"
-                }]
+                }],
+                shouldCreateSprite: true,
             });
         })
 
@@ -178,8 +170,36 @@ describe('<CommentDialog/>', () => {
                     message: "comment 1",
                     username: "user1"
                 }]
-            } 
+            }
         )
+        await waitForElementToBeRemoved(() => screen.queryByRole('dialog'), { timeout: 200 });
+    });
+
+    it.skip(`should not publish a ${CREATE_MARKER} event when closing an existing dialog`, async () => {
+        jest.spyOn(PubSub, 'publish');
+        render(
+            <UserContext.Provider value={{ user: mockUser }}>
+                <CommentDialog />
+            </UserContext.Provider>
+        )
+        act(() => {
+            PubSub.publishSync(OPEN_COMMENT_DIALOG, {
+                coordinate: [0, 0],
+                name: "marker 1",
+                parent: "bulldog",
+                comments: [{
+                    createAt: "Sun, Feb 12, 24:00",
+                    id: "1",
+                    message: "comment 1",
+                    username: "user1"
+                }],
+                shouldCreateSprite: false,
+            });
+        })
+
+        // TODO: Need to find a way to close the modal
+
+        expect(PubSub.publish).not.toBeCalled()
         await waitForElementToBeRemoved(() => screen.queryByRole('dialog'), { timeout: 200 });
     });
 

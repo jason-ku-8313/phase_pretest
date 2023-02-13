@@ -25,9 +25,10 @@ export default function initPixi(app) {
     if (e.target !== e.currentTarget) return;
     const commentMarker = get(e.target.name);
     if (commentMarker) {
-      PubSub.publish(OPEN_COMMENT_DIALOG, commentMarker);
-    } else {
-      e.target.destroy()
+      PubSub.publish(OPEN_COMMENT_DIALOG, {
+        ...commentMarker,
+        shouldCreateSprite: false,
+      });
     }
   };
 
@@ -43,6 +44,7 @@ export default function initPixi(app) {
         ],
         comments: [],
         parent: e.target.name,
+        shouldCreateSprite: true,
       });
     }
     isDragged = false;
