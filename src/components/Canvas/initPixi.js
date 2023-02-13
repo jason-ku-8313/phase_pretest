@@ -24,7 +24,11 @@ export default function initPixi(app) {
   const handleClickMarker = (e) => {
     if (e.target !== e.currentTarget) return;
     const commentMarker = get(e.target.name);
-    PubSub.publish(OPEN_COMMENT_DIALOG, commentMarker);
+    if (commentMarker) {
+      PubSub.publish(OPEN_COMMENT_DIALOG, commentMarker);
+    } else {
+      e.target.destroy()
+    }
   };
 
   let isDragged = false;
