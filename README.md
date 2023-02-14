@@ -62,7 +62,7 @@ To Visit App:
       comment marker to the canvas and open the comment dialog
 - [x] Comment markers should exist in the canvas and retain the position relative to
       the displayed image (independent of the pan and zoom)
-- [ ] [Bonus] If comments are placed on a particular image they should be attached to
+- [X] [Bonus] If comments are placed on a particular image they should be attached to
       that image, so that if the image to be moved or removed all comments placed on
       it should move with it.
 
